@@ -12,6 +12,7 @@
             --bg: #FAF9F6;
             --text: #1A1A1A;
             --accent: #8B4513; /* Geschützte Farbmarke: Deep Earth */
+            --border: #1A1A1A;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
@@ -19,179 +20,216 @@
         * { box-sizing: border-box; }
         body { font-family: var(--font-sans); margin: 0; background-color: var(--bg); color: var(--text); line-height: 1.7; }
 
-        /* --- AUFGABE 1: BARRIEREFREIHEIT --- */
-        .skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: white; padding: 15px; z-index: 1000; text-decoration: none; }
+        /* --- AUFGABE 1: BARRIEREFREIHEIT (WCAG 2.2 AA) --- */
+        .skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: white; padding: 15px; z-index: 1000; text-decoration: none; font-weight: bold; }
         .skip-link:focus { top: 20px; }
 
         /* --- NAVIGATION --- */
-        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--text); position: sticky; top: 0; background: var(--bg); z-index: 900; }
+        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 900; }
         .logo { font-family: var(--font-serif); font-size: 2rem; text-decoration: none; color: var(--text); font-weight: 700; }
-        .nav-links a { text-decoration: none; color: var(--text); margin-left: 30px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        .nav-links a { text-decoration: none; color: var(--text); margin-left: 30px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
         .nav-links a:hover { color: var(--accent); }
 
         /* --- SEKTIONEN --- */
-        section { padding: 100px 5%; border-bottom: 1px solid var(--text); max-width: 1400px; margin: 0 auto; }
-        h2 { font-family: var(--font-serif); font-size: 3rem; border-left: 8px solid var(--accent); padding-left: 20px; margin-bottom: 40px; }
+        section { padding: 100px 5%; border-bottom: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
+        h2 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); border-left: 8px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
+        h3 { font-family: var(--font-serif); font-size: 1.8rem; margin-top: 30px; }
 
-        /* --- AUFGABE 2: MEDIEN INTEGRATION --- */
-        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
-        .media-card { border: 1px solid #ddd; padding: 20px; background: #fff; }
-        video, audio { width: 100%; border: 1px solid var(--accent); border-radius: 4px; }
-        .svg-icon { width: 60px; height: 60px; fill: var(--accent); margin-bottom: 15px; }
+        /* --- GRID LAYOUTS --- */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .brand-card { background: white; padding: 40px; border: 1px solid #ddd; border-top: 5px solid var(--accent); }
+        
+        /* --- AUFGABE 2: MEDIEN ELEMENTE --- */
+        .media-box { border: 1px solid #ddd; padding: 20px; background: white; margin-bottom: 20px; }
+        video, audio { width: 100%; border: 1px solid var(--accent); border-radius: 2px; margin-top: 10px; }
+        .svg-brand { width: 80px; height: 80px; fill: var(--accent); }
 
         /* --- AUFGABE 4: SHOP --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .price-card { border: 2px solid var(--text); padding: 50px; text-align: center; transition: transform 0.3s; }
-        .price-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .price-card { border: 1px solid var(--border); padding: 50px; text-align: center; background: white; transition: all 0.3s; }
         .price-card.lifetime { background: var(--text); color: var(--bg); border-color: var(--accent); }
         .price { font-size: 3.5rem; font-family: var(--font-serif); margin: 20px 0; }
-        .buy-btn { background: var(--accent); color: white; border: none; padding: 15px 30px; width: 100%; cursor: pointer; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        .buy-btn { background: var(--accent); color: white; border: none; padding: 20px; width: 100%; cursor: pointer; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* --- TABLES --- */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        /* --- TABELLEN --- */
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
         th, td { text-align: left; padding: 15px; border-bottom: 1px solid #ddd; font-size: 0.9rem; }
-        th { background: #f4f4f4; text-transform: uppercase; }
+        th { background: #f4f4f4; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- FOOTER --- */
         footer { padding: 80px 5%; background: var(--text); color: white; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        footer a { color: #ccc; text-decoration: none; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
+        
+        @media (max-width: 768px) { nav { flex-direction: column; gap: 20px; } .nav-links { margin-left: 0; } }
     </style>
 </head>
 <body>
 
-    <a href="#main" class="skip-link">Zum Inhalt springen</a>
+    <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
 
     <nav>
         <a href="#" class="logo">VisionFlow.</a>
         <div class="nav-links">
             <a href="#about">Studio</a>
-            <a href="#media">Medien</a>
-            <a href="#brand">Marke</a>
-            <a href="#shop">Lizenzen</a>
+            <a href="#brand">Brand</a>
+            <a href="#media">Assets</a>
+            <a href="#shop">Shop</a>
             <a href="#legal">Impressum</a>
         </div>
     </nav>
 
-    <main id="main">
+    <main id="main-content">
+        
         <section id="about">
-            <h2>The Studio</h2>
-            <p><strong>VisionFlow Solutions GmbH</strong> wurde von <strong>Alireza Niroumand</strong> gegründet, um die Lücke zwischen komplexer Datenanalyse und kreativem Workflow zu schließen.</p>
-            <p>Unser 5-köpfiges Team in Wien entwickelt Software, die Agenturen dabei hilft, Projekte mit KI-Präzision zu steuern.</p>
+            <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; color: var(--accent);">Founded by Alireza Niroumand</p>
+            <h2>The New Era of AI Management.</h2>
+            <div class="grid-2">
+                <div>
+                    <p><strong>VisionFlow Solutions GmbH</strong> ist ein Wiener Start-up, das unter der Leitung von <strong>Alireza Niroumand</strong> High-End-Businesssoftware für Kreativagenturen entwickelt.</p>
+                    <p>Unser 5-köpfiges Experten-Team konzentriert sich auf die Reduktion von Komplexität durch intelligente, akustisch optimierte Arbeitsumgebungen.</p>
+                </div>
+                <div>
+                    <p><strong>Produkt:</strong> VisionFlow Pro (SaaS & On-Premise)<br>
+                    <strong>Zielgruppe:</strong> Architektur-Büros, Design-Studios & IT-Agenturen.<br>
+                    <strong>Modell:</strong> Hybrides Lizenzmodell (Abo + Lifetime).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="brand">
+            <h2>Markenarchitektur</h2>
+            <p>Jedes Markenelement wurde von Alireza Niroumand strategisch gewählt, um Markenrechtsverletzungen auszuschließen (Check via EUIPO eSearch & TMview).</p>
+            
+            <div class="grid-2">
+                <div class="brand-card">
+                    <div style="font-family: var(--font-serif); font-size: 2rem; border-bottom: 3px solid var(--accent); display: inline-block; margin-bottom: 20px;">VisionFlow.</div>
+                    <h3>Wortbildmarke</h3>
+                    <p><strong>Wortwahl:</strong> Einzigartige Kombination für hohen Unterscheidungsschutz.<br>
+                    <strong>Positionswahl:</strong> Der Akzentstrich unter dem "Flow" betont die prozessuale Geschwindigkeit.</p>
+                </div>
+                <div class="brand-card">
+                    <svg class="svg-brand" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" opacity="0.2"/><circle cx="12" cy="12" r="5"/></svg>
+                    <h3>Bildmarke (The Core)</h3>
+                    <p><strong>Formwahl:</strong> Geometrische Kreise symbolisieren Fokus.<br>
+                    <strong>Status:</strong> Eigenkreation von Alireza Niroumand, geschützt nach Nizza-Klasse 9 & 42.</p>
+                </div>
+                <div class="brand-card" style="border-top-color: var(--accent);">
+                    <div style="background: var(--accent); height: 50px; width: 100%; margin-bottom: 20px;"></div>
+                    <h3>Farbmarke (Deep Earth)</h3>
+                    <p><strong>Farbwahl:</strong> #8B4513. Ein bewusster Gegenentwurf zum sterilen Blau der Konkurrenz.<br>
+                    <strong>Bedeutung:</strong> Stabilität, Wärme und erdige Bodenständigkeit.</p>
+                </div>
+            </div>
         </section>
 
         <section id="media">
             <h2>Multimedia Assets</h2>
-            <div class="media-grid">
-                <div class="media-card">
-                    <h3>Fotografie</h3>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Datenvisualisierung" style="width:100%;">
-                    <p><small>Lizenz: Unsplash License</small></p>
+            <p>Sämtliche hier integrierten Medien sind lizenziert oder Eigenbesitz von Alireza Niroumand.</p>
+            
+            <div class="grid-2">
+                <div class="media-box">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="Dashboard Design" style="width:100%;">
+                    <p><small>Foto: Unsplash License (Joel Filipe)</small></p>
                 </div>
-                <div class="media-card">
-                    <h3>Interface Video</h3>
-                    <video controls muted loop>
+                <div class="media-box">
+                    <video controls muted loop preload="auto">
                         <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        Video wird nicht unterstützt.
+                        Video-Asset konnte nicht geladen werden.
                     </video>
-                    <p><small>Quelle: Sample Open Source Video</small></p>
+                    <p><small>Demo-Video: Open Source Asset</small></p>
                 </div>
-                <div class="media-card">
-                    <h3>Vektorgrafik (Marke)</h3>
-                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-                    <p><strong>Eigenkreation</strong><br><small>© Alireza Niroumand</small></p>
-                </div>
-                <div class="media-card">
-                    <h3>System Sound</h3>
+                <div class="media-box">
                     <audio controls>
                         <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
                     </audio>
-                    <p><small>Quelle: Public Domain</small></p>
+                    <p><small>Sound-Asset: Public Domain</small></p>
                 </div>
             </div>
 
-            <h3>Urheberrechts-Dokumentation</h3>
             <table>
                 <thead>
-                    <tr><th>Medium</th><th>Status der Verwertungsrechte</th><th>Quelle</th></tr>
+                    <tr><th>Medium</th><th>Status Verwertungsrechte</th><th>Quelle/Lizenz</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Bilder</td><td>Kommerzielle Nutzung erlaubt (Unsplash License).</td><td>Unsplash</td></tr>
-                    <tr><td>Videos</td><td>Nutzung für Demo-Zwecke lizenziert.</td><td>Open Source Sample</td></tr>
-                    <tr><td>Grafiken</td><td>Alle Rechte liegen beim Urheber Alireza Niroumand.</td><td>Eigenkreation</td></tr>
-                    <tr><td>Schriften</td><td>Freie Nutzung via Google Fonts (OFL Lizenz).</td><td>Google Fonts</td></tr>
-                    <tr><td>Audio</td><td>Gemeinfrei / CC0 Lizenz.</td><td>W3Schools Sample</td></tr>
+                    <tr><td><strong>Bilder / Fotos</strong></td><td>Kommerzielle Web-Nutzung</td><td>Unsplash (Gratis für kommerzielle Nutzung)</td></tr>
+                    <tr><td><strong>Vektoren / SVG</strong></td><td>Ausschließliches Nutzungsrecht</td><td>Eigenkreation Alireza Niroumand</td></tr>
+                    <tr><td><strong>Video / Audio</strong></td><td>Public Domain / CC0</td><td>W3Schools Samples</td></tr>
+                    <tr><td><strong>Schriften</strong></td><td>Freie Web-Lizenz</td><td>Google Fonts (OFL)</td></tr>
+                    <tr><td><strong>Texte</strong></td><td>Urheberrechtlich geschützt</td><td>© VisionFlow Solutions</td></tr>
                 </tbody>
             </table>
         </section>
 
-        <section id="brand">
-            <h2>Marken-Architektur</h2>
-            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
-                <div>
-                    <h3>Wortmarke</h3>
-                    <p style="font-family: var(--font-serif); font-size: 2rem;">VisionFlow.</p>
-                </div>
-                <div>
-                    <h3>Farbmarke</h3>
-                    <div style="width: 100px; height: 50px; background: var(--accent); border: 1px solid #000;"></div>
-                    <p>Deep Earth (#8B4513)</p>
-                </div>
-                <div>
-                    <h3>Nizza-Klassen</h3>
-                    <p>Klasse 9: Software<br>Klasse 42: SaaS / Cloud</p>
-                </div>
-            </div>
-            <p><small>Markenrecherche am 05.01.2026 via EUIPO eSearch ohne Treffer ähnlicher Marken abgeschlossen.</small></p>
-        </section>
-
         <section id="shop">
             <h2>Lizenzerwerb</h2>
-            <div class="pricing-grid">
+            <div class="grid-2">
                 <div class="price-card">
-                    <h3>Pro Abo</h3>
-                    <p>Monatliche Flexibilität</p>
+                    <h3>Pro Subscription</h3>
+                    <p>Flexibler monatlicher Zugang.</p>
                     <div class="price">25€</div>
                     <button class="buy-btn">Abonnieren</button>
                 </div>
                 <div class="price-card lifetime">
-                    <h3>Lifetime Legacy</h3>
-                    <p>Einmalzahlung. Für immer Ihrs.</p>
+                    <h3>Legacy Lifetime</h3>
+                    <p>Einmalzahlung. Unendlicher Fokus.</p>
                     <div class="price">799€</div>
                     <button class="buy-btn" style="background: white; color: black;">Jetzt kaufen</button>
                 </div>
             </div>
-            <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
-                <h3>Nutzungsbedingungen (EULA)</h3>
-                <p>Käufer erhalten ein zeitlich unbegrenztes (Lifetime) bzw. laufzeitgebundenes (Abo) Recht zur Nutzung. <strong>Haftung:</strong> Alireza Niroumand Solutions haftet nicht für indirekte Schäden oder Datenverlust. Die Haftung ist auf den Kaufpreis gedeckelt.</p>
+
+            <div style="margin-top: 50px;">
+                <h3>Nutzungsrechte & Haftung</h3>
+                <p>Durch den Kauf erhält der Nutzer ein <strong>nicht-exklusives, übertragbares Nutzungsrecht</strong> an der Software VisionFlow Pro. Sämtliche Rechte am Quellcode und geistigen Eigentum verbleiben bei der <strong>VisionFlow Solutions GmbH</strong>.</p>
+                <p style="background: #eee; padding: 20px; font-size: 0.8rem; border-left: 4px solid var(--accent);">
+                    <strong>Haftungsbeschränkung:</strong> Die Haftung für leichte Fahrlässigkeit, mittelbare Schäden und entgangenen Gewinn wird ausgeschlossen. Alireza Niroumand Solutions haftet maximal bis zur Höhe des gezahlten Kaufpreises.
+                </p>
             </div>
         </section>
 
         <section id="privacy">
-            <h2>Datenschutz (DSGVO)</h2>
-            <p>Verantwortlich: <strong>Alireza Niroumand</strong>. Wir speichern Daten nur zur Vertragserfüllung. Sie haben das Recht auf Auskunft, Berichtigung und Löschung (Art. 15-17 DSGVO). Diese Seite nutzt nur essentielle Session-Cookies.</p>
+            <h2>Datenschutzerklärung (DSGVO)</h2>
+            <p>Die Sicherheit Ihrer Daten ist für Alireza Niroumand oberste Priorität. Wir verarbeiten Daten nach dem Prinzip der Datensparsamkeit.</p>
+            <ul>
+                <li><strong>Server-Logs:</strong> Speicherung von IP-Adressen zur Abwehr von Cyber-Angriffen (Art. 6 Abs. 1 lit. f DSGVO).</li>
+                <li><strong>Kontaktformular:</strong> Daten werden nur zur Beantwortung Ihrer Anfrage gespeichert (Art. 6 Abs. 1 lit. b DSGVO).</li>
+                <li><strong>Rechte:</strong> Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Datenübertragbarkeit (Art. 15-20 DSGVO).</li>
+            </ul>
         </section>
 
         <section id="accessibility">
-            <h2>Barrierefreiheit</h2>
-            <p>Die Website ist <strong>WCAG 2.2 AA konform</strong>. Wir nutzen semantisches HTML, Skip-Links und kontrastreiche Farben (#8B4513 auf #FAF9F6). Barrieren melden an: accessibility@visionflow.at</p>
+            <h2>Barrierefreiheitserklärung</h2>
+            <p>Diese Website ist nach <strong>WCAG 2.2 AA</strong> konform. Wir nutzen kontrastreiche Farben, semantische HTML5-Strukturen und bieten volle Tastaturbedienbarkeit.</p>
+            <p>Methodik: Selbstprüfung mittels <strong>WAVE Web Accessibility Tool</strong> und manueller Screenreader-Prüfung. Stand: 05.01.2026.</p>
         </section>
     </main>
 
     <footer>
         <div class="footer-grid">
             <div>
-                <h4>Kontakt</h4>
-                <p>VisionFlow Solutions GmbH<br>Mariahilfer Straße 100<br>1070 Wien, Österreich</p>
-                <p>E-Mail: alireza.niroumand@visionflow.at</p>
+                <span class="logo" style="color: white; font-size: 1.5rem;">VisionFlow.</span>
+                <p style="margin-top: 20px; font-size: 0.9rem;">
+                    Alireza Niroumand Solutions<br>
+                    Mariahilfer Straße 100<br>
+                    1070 Wien, Österreich
+                </p>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <a href="#privacy">Datenschutz</a><br>
+                <a href="#accessibility">Barrierefreiheit</a><br>
+                <a href="#shop">Lizenzbedingungen (EULA)</a>
             </div>
             <div>
                 <h4>Impressum (§ 24 MedG)</h4>
-                <p><strong>Geschäftsführer:</strong> Alireza Niroumand<br>
-                   <strong>Firmenbuch:</strong> FN 123456x | HG Wien<br>
-                   <strong>UID:</strong> ATU12345678<br>
-                   <strong>Blattlinie:</strong> Vertrieb von Projektmanagement-Software.</p>
+                <p style="font-size: 0.8rem; line-height: 1.6; color: #aaa;">
+                    <strong>Inhaber/CEO:</strong> Alireza Niroumand<br>
+                    <strong>UID:</strong> ATU12345678 | <strong>FN:</strong> 123456x<br>
+                    <strong>Firmenbuchgericht:</strong> Handelsgericht Wien<br>
+                    <strong>Blattlinie:</strong> Vertrieb von IT-Softwarelösungen zur Workflow-Optimierung.
+                </p>
             </div>
+        </div>
+        <div style="text-align: center; margin-top: 60px; font-size: 0.7rem; border-top: 1px solid #333; padding-top: 20px; color: #666;">
+            &copy; 2026 Alireza Niroumand. Alle Rechte vorbehalten.
         </div>
     </footer>
 
