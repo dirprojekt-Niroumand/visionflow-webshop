@@ -1,1 +1,367 @@
+<!DOCTYPE html>
+<html lang="de" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionFlow | Next-Gen Project Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0f172a; /* Dark Slate Blue */
+            --card-bg: #ffffff;
+            --accent: #0055FF; /* Vision-Blue */
+            --accent-glow: rgba(0, 85, 255, 0.15);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+        }
 
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            color: var(--text-main);
+            background-color: #f8fafc;
+            line-height: 1.5;
+        }
+
+        /* --- BARRIEREFREIHEIT: FOCUS & SKIP --- */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            z-index: 2000;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a:focus {
+            color: var(--white);
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--primary-bg);
+            color: var(--white);
+            padding: 120px 5% 80px;
+            text-align: center;
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 15px -3px var(--accent-glow);
+            display: inline-block;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        section {
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: "";
+            width: 8px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* --- BRAND BENTO GRID --- */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .brand-card {
+            background: #f1f5f9;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .brand-visual {
+            background: white;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        /* --- TABLES --- */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #f8fafc;
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* --- FOOTER & IMPRESSUM --- */
+        footer {
+            background: var(--primary-bg);
+            color: #94a3b8;
+            padding: 80px 5%;
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-logo { color: white; font-weight: 800; margin-bottom: 20px; display: block; }
+
+        /* Responsivität */
+        @media (max-width: 768px) {
+            .brand-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+<nav>
+    <a href="#" class="logo-text">VISION<span style="color:var(--accent)">FLOW</span></a>
+    <div class="nav-links" aria-label="Hauptnavigation">
+        <a href="#about">Über uns</a>
+        <a href="#brand">Brand</a>
+        <a href="#shop">Shop</a>
+        <a href="#legal">Rechtliches</a>
+        <a href="#privacy">Datenschutz</a>
+    </div>
+</nav>
+
+<main id="main-content">
+    <div class="hero">
+        <h1>Work. Flow. Vision.</h1>
+        <p>Die erste Projektmanagement-Plattform für Agenturen, die KI nicht nur nutzt, sondern versteht.</p>
+        <a href="#shop" class="cta-button">Software-Lizenz erwerben</a>
+    </div>
+
+    <section id="about">
+        <h2>Das Unternehmen</h2>
+        <p><strong>VisionFlow Solutions GmbH</strong> ist ein Wiener Deep-Tech Start-up. Wir glauben daran, dass kreative Arbeit durch intelligente Automatisierung befreit werden sollte.</p>
+        <p>Unser Team besteht aus 5 Experten in den Bereichen Machine Learning und User Experience Design.</p>
+    </section>
+
+    <section id="brand">
+        <h2>Marken-Architektur</h2>
+        <p>Wir haben unsere Marke nach Nizza-Klassen (9, 35, 42) geprüft, um absolute Rechtssicherheit zu garantieren.</p>
+        
+        <div class="brand-grid">
+            <div class="brand-card">
+                <div class="brand-visual">
+                    <span style="color:var(--accent); font-size: 1.5rem;">●</span> VISIONFLOW
+                </div>
+                <h3>Wort-Bildmarke</h3>
+                <p>Kombination aus moderner Grotesk-Schrift und dem Fokus-Punkt.</p>
+            </div>
+            <div class="brand-card">
+                <div class="brand-visual" style="font-size: 3rem;">●</div>
+                <h3>Bildmarke</h3>
+                <p>Der "Flow-Dot" – unser Icon für App-Symbole und Interface-Elemente.</p>
+            </div>
+            <div class="brand-card">
+                <div class="brand-visual" style="background: var(--accent); color: white;">#0055FF</div>
+                <h3>Farbmarke</h3>
+                <p><strong>Vision-Blue</strong>: Unser Signal für Klarheit und technologische Überlegenheit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="media">
+        <h2>Medien & Urheberrecht</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Art</th>
+                    <th>Medium/Asset</th>
+                    <th>Quelle/Urheber</th>
+                    <th>Lizenz</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bilder</td>
+                    <td>Hero Background</td>
+                    <td>Unsplash (Joel Filipe)</td>
+                    <td>Unsplash License</td>
+                </tr>
+                <tr>
+                    <td>Schrift</td>
+                    <td>Inter Family</td>
+                    <td>Rasmus Andersson</td>
+                    <td>OFL (Open Font License)</td>
+                </tr>
+                <tr>
+                    <td>Grafiken</td>
+                    <td>Dashboard Mockups</td>
+                    <td>Eigenkreation</td>
+                    <td>© VisionFlow GmbH</td>
+                </tr>
+                <tr>
+                    <td>Icons</td>
+                    <td>Lucide Icons</td>
+                    <td>Lucide Contributors</td>
+                    <td>ISC License</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="shop">
+        <h2>Lizenzerwerb & EULA</h2>
+        <p>Mit dem Kauf von VisionFlow Pro erwerben Sie eine <strong>Einzelnutzer-Lizenz</strong> für 12 Monate.</p>
+        <ul style="background: #f8fafc; padding: 20px; border-radius: 12px; list-style-type: '✓ ';">
+            <li>Nutzungsrecht der SaaS-Plattform weltweit.</li>
+            <li>Alle Rechte am Quellcode verbleiben beim Urheber.</li>
+            <li>Haftungsbeschränkung: Wir haften maximal bis zur Höhe des jährlichen Lizenzgebühr-Betrages.</li>
+            <li>Keine Haftung für Datenverlust bei unsachgemäßer API-Nutzung.</li>
+        </ul>
+        <button class="cta-button" style="border:none; width:100%; cursor:pointer;">Jetzt VisionFlow Pro für 25€ / Monat sichern</button>
+    </section>
+
+    <section id="privacy">
+        <h2>Datenschutz (DSGVO)</h2>
+        <p>Wir verarbeiten Daten nach dem Prinzip der Datensparsamkeit.</p>
+        <h3>Ihre Rechte</h3>
+        <p>Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16) und Löschung (Art. 17) Ihrer Daten. Kontaktieren Sie uns unter privacy@visionflow-vienna.at.</p>
+        <h3>Cookies</h3>
+        <p>Diese Seite nutzt ausschließlich <strong>funktionale Session-Cookies</strong>. Es erfolgt kein Third-Party-Tracking ohne Ihre explizite Einwilligung.</p>
+    </section>
+
+    <section id="accessibility">
+        <h2>Barrierefreiheit</h2>
+        <p>Diese Website ist nach <strong>WCAG 2.2 AA</strong> optimiert. Wir nutzen semantisches HTML5, ausreichende Kontrastverhältnisse (mind. 4.5:1) und eine volle Tastatur-Navigierbarkeit.</p>
+        <p>Zuletzt geprüft am: 05. Januar 2026.</p>
+    </section>
+</main>
+
+<footer id="legal">
+    <div class="footer-grid">
+        <div>
+            <span class="footer-logo">VISIONFLOW SOLUTIONS</span>
+            <p>Empowering creative agencies through smart orchestration. Made with precision in Vienna.</p>
+        </div>
+        <div>
+            <h4 style="color:white">Rechtliches</h4>
+            <nav style="display:block; background:none; padding:0; border:none; backdrop-filter:none;">
+                <a href="#legal" style="margin:0; display:block; margin-bottom:10px;">Impressum</a>
+                <a href="#privacy" style="margin:0; display:block; margin-bottom:10px;">Datenschutz</a>
+                <a href="#shop" style="margin:0; display:block; margin-bottom:10px;">Lizenzbedingungen</a>
+            </nav>
+        </div>
+        <div>
+            <h4 style="color:white">Impressum (§ 24 MedG)</h4>
+            <p>
+                VisionFlow Solutions GmbH<br>
+                Mariahilfer Straße 100<br>
+                1070 Wien, Österreich<br><br>
+                FN: 999888y | HG Wien<br>
+                UID: ATU99988877<br>
+                GF: [Ihr Name]
+            </p>
+        </div>
+    </div>
+    <div style="text-align:center; border-top:1px solid #1e293b; margin-top:50px; padding-top:20px; font-size:0.8rem;">
+        &copy; 2026 VisionFlow Solutions GmbH. Alle Rechte vorbehalten.
+    </div>
+</footer>
+
+</body>
+</html>
