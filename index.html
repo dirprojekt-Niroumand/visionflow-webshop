@@ -44,6 +44,12 @@
         .price { font-size: 3.5rem; font-family: var(--font-serif); margin: 20px 0; }
         .buy-btn { background: var(--accent); color: white; border: none; padding: 20px; width: 100%; cursor: pointer; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
+        /* --- AUFGABE 4: LIZENZ DETAIL STYLING --- */
+        .license-detail-box { background: white; padding: 40px; border: 1px solid #ddd; margin-top: 40px; }
+        .license-list { list-style: none; padding: 0; }
+        .license-list li { margin-bottom: 15px; padding-left: 20px; border-left: 2px solid var(--accent); }
+        .license-header { font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 10px; color: var(--accent); display: block; }
+
         .contact-form { background: white; padding: 40px; border: 1px solid var(--border); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
@@ -83,7 +89,7 @@
             <a href="#about">Studio</a>
             <a href="#brand">Brand</a>
             <a href="#media">Assets</a>
-            <a href="#shop">Shop</a>
+            <a href="#shop">Shop & Lizenz</a>
             <a href="#contact">Kontakt</a>
             <a href="#legal">Impressum</a>
         </div>
@@ -188,12 +194,43 @@
                 </div>
             </div>
 
-            <div style="margin-top: 50px;">
-                <h3>Nutzungsrechte & Haftung</h3>
-                <p>Durch den Kauf erhält der Nutzer ein <strong>nicht-exklusives, übertragbares Nutzungsrecht</strong> an der Software VisionFlow Pro. Sämtliche Rechte am Quellcode und geistigen Eigentum verbleiben bei der <strong>VisionFlow Solutions GmbH</strong>.</p>
-                <p style="background: #eee; padding: 20px; font-size: 0.8rem; border-left: 4px solid var(--accent);">
-                    <strong>Haftungsbeschränkung:</strong> Die Haftung für leichte Fahrlässigkeit, mittelbare Schäden und entgangenen Gewinn wird ausgeschlossen. Alireza Niroumand Solutions haftet maximal bis zur Höhe des gezahlten Kaufpreises.
-                </p>
+            <div id="license-details" style="margin-top: 80px;">
+                <h3>Lizenzvereinbarung (EULA)</h3>
+                <p>Mit dem Erwerb der Software akzeptieren Sie die folgenden Nutzungsbedingungen der VisionFlow Solutions GmbH.</p>
+                
+                <div class="grid-2">
+                    <div class="license-detail-box">
+                        <span class="license-header">1. Einräumung von Nutzungsrechten</span>
+                        <ul class="license-list">
+                            <li><strong>Nicht-exklusives Recht:</strong> Der Kunde erhält das einfache, nicht übertragbare Recht zur Nutzung der Software auf bis zu drei Endgeräten pro Lizenz.</li>
+                            <li><strong>Zeitliche Beschränkung:</strong> 
+                                <br><em>Subscription:</em> Beschränkt auf die Dauer des aktiven Abonnements.
+                                <br><em>Lifetime:</em> Zeitlich unbeschränktes Nutzungsrecht an der erworbenen Version inkl. Minor-Updates.
+                            </li>
+                            <li><strong>Kommerzielle Nutzung:</strong> Die Software darf uneingeschränkt für kommerzielle Geschäftsprozesse des Kunden verwendet werden.</li>
+                        </ul>
+                    </div>
+
+                    <div class="license-detail-box">
+                        <span class="license-header">2. Urheberrecht & Vorbehalte</span>
+                        <ul class="license-list">
+                            <li><strong>Eigentum:</strong> Alle Rechte am Quellcode, der Benutzeroberfläche, den Algorithmen und der Dokumentation verbleiben ausschließlich bei <strong>Alireza Niroumand Solutions</strong>.</li>
+                            <li><strong>Bearbeitungsverbot:</strong> Dem Kunden ist es untersagt, die Software zurückzuentwickeln (Reverse Engineering), zu dekompilieren oder abgeleitete Werke zu erstellen.</li>
+                            <li><strong>Weitergabe:</strong> Eine Vermietung, Verleihung oder öffentliche Zugänglichmachung der Software ist ohne schriftliche Genehmigung untersagt.</li>
+                        </ul>
+                    </div>
+
+                    <div class="license-detail-box" style="grid-column: 1 / -1; border-color: var(--accent);">
+                        <span class="license-header">3. Haftungsbeschränkung & Gewährleistung</span>
+                        <p>Die Haftung richtet sich nach den gesetzlichen Bestimmungen, soweit nachfolgend nichts anderes geregelt ist:</p>
+                        <ul class="license-list">
+                            <li><strong>Haftungsausschluss:</strong> Die VisionFlow Solutions GmbH haftet <strong>nicht</strong> für leicht fahrlässig verursachte Schäden. Dies gilt insbesondere für entgangenen Gewinn, Betriebsunterbrechungen oder Verlust von Daten.</li>
+                            <li><strong>Haftungsgrenze:</strong> Die Haftung ist der Höhe nach auf den bei Vertragsschluss vorhersehbaren, vertragstypischen Schaden begrenzt, maximal jedoch auf die Höhe des vom Kunden gezahlten Lizenzentgelts (bei Abos: Jahresgebühr).</li>
+                            <li><strong>Ausnahme:</strong> Vorstehende Haftungsausschlüsse gelten nicht bei Vorsatz, grober Fahrlässigkeit sowie bei Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit (Personenschäden).</li>
+                            <li><strong>Gewährleistung:</strong> Die Software wird "wie besehen" (as is) bereitgestellt. Es wird keine Garantie dafür übernommen, dass die Software fehlerfrei ist oder ununterbrochen funktioniert.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
