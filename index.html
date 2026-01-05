@@ -11,7 +11,7 @@
         :root {
             --bg: #FAF9F6;
             --text: #1A1A1A;
-            --accent: #8B4513; /* Geschützte Farbmarke: Deep Earth */
+            --accent: #8B4513; 
             --border: #1A1A1A;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -20,51 +20,62 @@
         * { box-sizing: border-box; }
         body { font-family: var(--font-sans); margin: 0; background-color: var(--bg); color: var(--text); line-height: 1.7; }
 
-        /* --- AUFGABE 1: BARRIEREFREIHEIT (WCAG 2.2 AA) --- */
-        .skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: white; padding: 15px; z-index: 1000; text-decoration: none; font-weight: bold; }
+        .skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: white; padding: 15px; z-index: 2000; text-decoration: none; font-weight: bold; }
         .skip-link:focus { top: 20px; }
 
-        /* --- NAVIGATION --- */
         nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 900; }
         .logo { font-family: var(--font-serif); font-size: 2rem; text-decoration: none; color: var(--text); font-weight: 700; }
         .nav-links a { text-decoration: none; color: var(--text); margin-left: 30px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
         .nav-links a:hover { color: var(--accent); }
 
-        /* --- SEKTIONEN --- */
         section { padding: 100px 5%; border-bottom: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
         h2 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.5rem); border-left: 8px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
         h3 { font-family: var(--font-serif); font-size: 1.8rem; margin-top: 30px; }
-
-        /* --- GRID LAYOUTS --- */
+        
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .brand-card { background: white; padding: 40px; border: 1px solid #ddd; border-top: 5px solid var(--accent); }
         
-        /* --- AUFGABE 2: MEDIEN ELEMENTE --- */
         .media-box { border: 1px solid #ddd; padding: 20px; background: white; margin-bottom: 20px; }
         video, audio { width: 100%; border: 1px solid var(--accent); border-radius: 2px; margin-top: 10px; }
         .svg-brand { width: 80px; height: 80px; fill: var(--accent); }
 
-        /* --- AUFGABE 4: SHOP --- */
         .price-card { border: 1px solid var(--border); padding: 50px; text-align: center; background: white; transition: all 0.3s; }
         .price-card.lifetime { background: var(--text); color: var(--bg); border-color: var(--accent); }
         .price { font-size: 3.5rem; font-family: var(--font-serif); margin: 20px 0; }
         .buy-btn { background: var(--accent); color: white; border: none; padding: 20px; width: 100%; cursor: pointer; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* --- TABELLEN --- */
+        .contact-form { background: white; padding: 40px; border: 1px solid var(--border); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px; border: 1px solid #ccc; font-family: var(--font-sans); background: #fafafa; }
+        .form-group input:focus, .form-group textarea:focus { outline: 2px solid var(--accent); background: white; }
+
+        #cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text); color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 5000; border-top: 4px solid var(--accent); }
+        .cookie-btn { background: white; color: var(--text); border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; margin-left: 10px; }
+
         table { width: 100%; border-collapse: collapse; margin-top: 30px; }
         th, td { text-align: left; padding: 15px; border-bottom: 1px solid #ddd; font-size: 0.9rem; }
         th { background: #f4f4f4; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- FOOTER --- */
         footer { padding: 80px 5%; background: var(--text); color: white; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
         
-        @media (max-width: 768px) { nav { flex-direction: column; gap: 20px; } .nav-links { margin-left: 0; } }
+        @media (max-width: 768px) { nav { flex-direction: column; gap: 20px; } .nav-links { margin-left: 0; } #cookie-banner { flex-direction: column; gap: 15px; text-align: center; } }
     </style>
 </head>
 <body>
 
     <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+
+    <div id="cookie-banner">
+        <div>
+            <strong>Datenschutz-Hinweis:</strong> Wir nutzen Cookies, um Ihr Einkaufserlebnis zu verbessern und Traffic zu analysieren.
+        </div>
+        <div>
+            <button class="cookie-btn" onclick="this.parentElement.parentElement.style.display='none'">Akzeptieren</button>
+            <button class="cookie-btn" style="background: transparent; color: white; border: 1px solid white;" onclick="this.parentElement.parentElement.style.display='none'">Ablehnen</button>
+        </div>
+    </div>
 
     <nav>
         <a href="#" class="logo">VisionFlow.</a>
@@ -73,6 +84,7 @@
             <a href="#brand">Brand</a>
             <a href="#media">Assets</a>
             <a href="#shop">Shop</a>
+            <a href="#contact">Kontakt</a>
             <a href="#legal">Impressum</a>
         </div>
     </nav>
@@ -185,14 +197,68 @@
             </div>
         </section>
 
+        <section id="contact">
+            <h2>Kontakt</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Ihre Vision besprechen.</h3>
+                    <p>Wir stehen für Support und Enterprise-Anfragen zur Verfügung.</p>
+                    <p>
+                        <strong>Alireza Niroumand Solutions</strong><br>
+                        Mariahilfer Straße 100<br>
+                        1070 Wien, Österreich<br>
+                        Email: office@visionflow.at
+                    </p>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post" onsubmit="alert('Danke für Ihre Nachricht! Dies ist eine Mock-Bestätigung.'); return false;">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Ihr Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" name="email" required placeholder="name@firma.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nachricht</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; font-size: 0.8rem;">
+                            <input type="checkbox" id="consent" required>
+                            <label for="consent" style="display:inline; font-weight:normal;">Ich stimme der Verarbeitung meiner Daten gemäß Datenschutzerklärung zu.</label>
+                        </div>
+
+                        <button type="submit" class="buy-btn" style="padding: 15px;">Nachricht senden</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <section id="privacy">
-            <h2>Datenschutzerklärung (DSGVO)</h2>
-            <p>Die Sicherheit Ihrer Daten ist für Alireza Niroumand oberste Priorität. Wir verarbeiten Daten nach dem Prinzip der Datensparsamkeit.</p>
-            <ul>
-                <li><strong>Server-Logs:</strong> Speicherung von IP-Adressen zur Abwehr von Cyber-Angriffen (Art. 6 Abs. 1 lit. f DSGVO).</li>
-                <li><strong>Kontaktformular:</strong> Daten werden nur zur Beantwortung Ihrer Anfrage gespeichert (Art. 6 Abs. 1 lit. b DSGVO).</li>
-                <li><strong>Rechte:</strong> Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Datenübertragbarkeit (Art. 15-20 DSGVO).</li>
-            </ul>
+            <h2>Datenschutzerklärung</h2>
+            <p>Verantwortlicher: <strong>Alireza Niroumand</strong>, Wien. Wir verarbeiten Daten nach Art. 6 DSGVO.</p>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>1. Datenerfassung auf dieser Website</h3>
+                    <ul>
+                        <li><strong>Kontaktformular:</strong> Wenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben zwecks Bearbeitung gespeichert (Art. 6 Abs. 1 lit. b DSGVO).</li>
+                        <li><strong>Cookies:</strong> Wir verwenden technisch notwendige Session-Cookies zur Warenkorb-Funktionalität.</li>
+                        <li><strong>Server-Logs:</strong> Der Provider erhebt automatisch Informationen (Browser, IP, Uhrzeit) zur Gewährleistung der Sicherheit.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>2. Analyse & Drittanbieter (Gemockt)</h3>
+                    <ul>
+                        <li><strong>VisionAnalytics:</strong> Diese Seite nutzt ein internes Analyse-Tool ohne Cookies, um Besucherströme anonymisiert zu messen.</li>
+                        <li><strong>Zahlungsabwicklung:</strong> Bei Kaufabschluss werden Daten an Zahlungsdienstleister (z.B. Stripe) übermittelt.</li>
+                    </ul>
+                    <h3>3. Ihre Rechte</h3>
+                    <p>Sie haben jederzeit das Recht auf unentgeltliche <strong>Auskunft</strong>, <strong>Berichtigung</strong> und <strong>Löschung</strong> Ihrer gespeicherten personenbezogenen Daten.</p>
+                </div>
+            </div>
         </section>
 
         <section id="accessibility">
@@ -202,7 +268,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer id="legal">
         <div class="footer-grid">
             <div>
                 <span class="logo" style="color: white; font-size: 1.5rem;">VisionFlow.</span>
@@ -219,12 +285,15 @@
                 <a href="#shop">Lizenzbedingungen (EULA)</a>
             </div>
             <div>
-                <h4>Impressum (§ 24 MedG)</h4>
+                <h4>Impressum</h4>
                 <p style="font-size: 0.8rem; line-height: 1.6; color: #aaa;">
-                    <strong>Inhaber/CEO:</strong> Alireza Niroumand<br>
-                    <strong>UID:</strong> ATU12345678 | <strong>FN:</strong> 123456x<br>
+                    <strong>Inhaber/Medieninhaber:</strong> Alireza Niroumand<br>
+                    <strong>Unternehmensgegenstand:</strong> Entwicklung & Vertrieb von Software.<br>
+                    <strong>UID-Nummer:</strong> ATU12345678<br>
+                    <strong>Firmenbuchnummer:</strong> FN 123456x<br>
                     <strong>Firmenbuchgericht:</strong> Handelsgericht Wien<br>
-                    <strong>Blattlinie:</strong> Vertrieb von IT-Softwarelösungen zur Workflow-Optimierung.
+                    <strong>Aufsichtsbehörde:</strong> Magistrat der Stadt Wien<br>
+                    <strong>Blattlinie:</strong> Informationen über IT-Produkte zur Förderung kreativer Arbeitsprozesse.
                 </p>
             </div>
         </div>
