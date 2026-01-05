@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisionFlow | The Architecture of Focus</title>
+    <title>VisionFlow | Alireza Niroumand Solutions</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
@@ -11,8 +11,7 @@
         :root {
             --bg: #FAF9F6;
             --text: #1A1A1A;
-            --accent: #8B4513; /* Farbmarke: Deep Earth */
-            --border: #1A1A1A;
+            --accent: #8B4513; /* Geschützte Farbmarke: Deep Earth */
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Montserrat', sans-serif;
         }
@@ -20,201 +19,178 @@
         * { box-sizing: border-box; }
         body { font-family: var(--font-sans); margin: 0; background-color: var(--bg); color: var(--text); line-height: 1.7; }
 
+        /* --- AUFGABE 1: BARRIEREFREIHEIT --- */
+        .skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: white; padding: 15px; z-index: 1000; text-decoration: none; }
+        .skip-link:focus { top: 20px; }
+
         /* --- NAVIGATION --- */
-        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 900; }
+        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--text); position: sticky; top: 0; background: var(--bg); z-index: 900; }
         .logo { font-family: var(--font-serif); font-size: 2rem; text-decoration: none; color: var(--text); font-weight: 700; }
         .nav-links a { text-decoration: none; color: var(--text); margin-left: 30px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        .nav-links a:hover { color: var(--accent); }
 
         /* --- SEKTIONEN --- */
-        section { padding: 80px 5%; border-bottom: 1px solid var(--border); max-width: 1400px; margin: 0 auto; }
-        h2 { font-family: var(--font-serif); font-size: 3rem; border-left: 8px solid var(--accent); padding-left: 20px; }
+        section { padding: 100px 5%; border-bottom: 1px solid var(--text); max-width: 1400px; margin: 0 auto; }
+        h2 { font-family: var(--font-serif); font-size: 3rem; border-left: 8px solid var(--accent); padding-left: 20px; margin-bottom: 40px; }
 
-        /* --- AUFGABE 2: MEDIEN-INTEGRATION --- */
-        .media-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
+        /* --- AUFGABE 2: MEDIEN INTEGRATION --- */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+        .media-card { border: 1px solid #ddd; padding: 20px; background: #fff; }
+        video, audio { width: 100%; border: 1px solid var(--accent); border-radius: 4px; }
+        .svg-icon { width: 60px; height: 60px; fill: var(--accent); margin-bottom: 15px; }
 
-        .media-box {
-            border: 1px solid #ddd;
-            padding: 20px;
-            background: white;
-        }
+        /* --- AUFGABE 4: SHOP --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .price-card { border: 2px solid var(--text); padding: 50px; text-align: center; transition: transform 0.3s; }
+        .price-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .price-card.lifetime { background: var(--text); color: var(--bg); border-color: var(--accent); }
+        .price { font-size: 3.5rem; font-family: var(--font-serif); margin: 20px 0; }
+        .buy-btn { background: var(--accent); color: white; border: none; padding: 15px 30px; width: 100%; cursor: pointer; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
-        video, audio {
-            width: 100%;
-            margin-top: 10px;
-        }
+        /* --- TABLES --- */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { text-align: left; padding: 15px; border-bottom: 1px solid #ddd; font-size: 0.9rem; }
+        th { background: #f4f4f4; text-transform: uppercase; }
 
-        .svg-logo-demo {
-            width: 100px;
-            fill: var(--accent);
-        }
-
-        /* --- TABELLEN --- */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
-        th, td { text-align: left; padding: 15px; border-bottom: 1px solid #ddd; }
-        th { background: #eee; text-transform: uppercase; }
-
-        /* --- BUTTONS --- */
-        .buy-btn { background: var(--accent); color: white; padding: 15px; border: none; width: 100%; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+        /* --- FOOTER --- */
+        footer { padding: 80px 5%; background: var(--text); color: white; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        footer a { color: #ccc; text-decoration: none; }
     </style>
 </head>
 <body>
+
+    <a href="#main" class="skip-link">Zum Inhalt springen</a>
 
     <nav>
         <a href="#" class="logo">VisionFlow.</a>
         <div class="nav-links">
             <a href="#about">Studio</a>
             <a href="#media">Medien</a>
+            <a href="#brand">Marke</a>
             <a href="#shop">Lizenzen</a>
             <a href="#legal">Impressum</a>
         </div>
     </nav>
 
-    <main id="main-content">
-        
+    <main id="main">
         <section id="about">
             <h2>The Studio</h2>
-            <p><strong>VisionFlow Solutions GmbH</strong> | 1070 Wien<br>
-            Ein Team von 5 Experten für KI-gestütztes Projektmanagement.</p>
+            <p><strong>VisionFlow Solutions GmbH</strong> wurde von <strong>Alireza Niroumand</strong> gegründet, um die Lücke zwischen komplexer Datenanalyse und kreativem Workflow zu schließen.</p>
+            <p>Unser 5-köpfiges Team in Wien entwickelt Software, die Agenturen dabei hilft, Projekte mit KI-Präzision zu steuern.</p>
         </section>
 
         <section id="media">
-            <h2>Medien & Assets</h2>
-            <p>Hier sind die verschiedenen Medienarten integriert, die für unseren Webshop lizenziert wurden:</p>
-
-            <div class="media-container">
-                <div class="media-box">
-                    <h3>1. Fotografie (Image)</h3>
-                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=400&q=80" alt="Modernes Büro" style="width: 100%;">
-                    <p><small>Quelle: Unsplash (Unsplash License)</small></p>
+            <h2>Multimedia Assets</h2>
+            <div class="media-grid">
+                <div class="media-card">
+                    <h3>Fotografie</h3>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Datenvisualisierung" style="width:100%;">
+                    <p><small>Lizenz: Unsplash License</small></p>
                 </div>
-
-                <div class="media-box">
-                    <h3>2. Vektorgrafik (Logo)</h3>
-                    <svg class="svg-logo-demo" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" />
-                        <rect x="45" y="20" width="10" height="60" fill="white" />
-                    </svg>
-                    <p><small>Quelle: Eigenkreation (© VisionFlow)</small></p>
-                </div>
-
-                <div class="media-box">
-                    <h3>3. Video (Interface Demo)</h3>
+                <div class="media-card">
+                    <h3>Interface Video</h3>
                     <video controls muted loop>
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-1738-large.mp4" type="video/mp4">
-                        Ihr Browser unterstützt keine Videos.
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Video wird nicht unterstützt.
                     </video>
-                    <p><small>Quelle: Mixkit (Free License)</small></p>
+                    <p><small>Quelle: Sample Open Source Video</small></p>
                 </div>
-
-                <div class="media-box">
-                    <h3>4. Audio (Notification Sound)</h3>
+                <div class="media-card">
+                    <h3>Vektorgrafik (Marke)</h3>
+                    <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                    <p><strong>Eigenkreation</strong><br><small>© Alireza Niroumand</small></p>
+                </div>
+                <div class="media-card">
+                    <h3>System Sound</h3>
                     <audio controls>
                         <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
-                        Ihr Browser unterstützt keine Audio-Elemente.
                     </audio>
-                    <p><small>Quelle: W3Schools (Public Domain Sample)</small></p>
+                    <p><small>Quelle: Public Domain</small></p>
                 </div>
             </div>
 
-            <h3>Urheberrechtshinweise & Lizenzen</h3>
+            <h3>Urheberrechts-Dokumentation</h3>
             <table>
                 <thead>
-                    <tr>
-                        <th>Medienart</th>
-                        <th>Verwertungsrecht / Lizenz</th>
-                        <th>Nachweis / Status</th>
-                    </tr>
+                    <tr><th>Medium</th><th>Status der Verwertungsrechte</th><th>Quelle</th></tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Bilder / Grafiken</strong></td>
-                        <td>Unsplash License / Eigentum</td>
-                        <td>Nutzungsrecht für kommerzielle Zwecke ohne Namensnennung (Unsplash). SVGs sind Eigenkreationen der VisionFlow GmbH.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Videos / Animationen</strong></td>
-                        <td>Mixkit Free License</td>
-                        <td>Erlaubt die Nutzung in kommerziellen Webprojekten gemäß Mixkit Terms.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Musik / Sounds</strong></td>
-                        <td>Public Domain (CC0)</td>
-                        <td>Frei von Urheberrechten Dritter; zur Nutzung in der Software-Oberfläche lizenziert.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Schriftarten</strong></td>
-                        <td>SIL Open Font License (OFL)</td>
-                        <td>Integrierte Google Fonts (Playfair/Montserrat) dürfen frei in Webprojekten genutzt werden.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Texte</strong></td>
-                        <td>Urheberrecht (Copyright)</td>
-                        <td>Sämtliche Texte wurden in-house erstellt. Alle Rechte verbleiben bei VisionFlow Solutions GmbH.</td>
-                    </tr>
+                    <tr><td>Bilder</td><td>Kommerzielle Nutzung erlaubt (Unsplash License).</td><td>Unsplash</td></tr>
+                    <tr><td>Videos</td><td>Nutzung für Demo-Zwecke lizenziert.</td><td>Open Source Sample</td></tr>
+                    <tr><td>Grafiken</td><td>Alle Rechte liegen beim Urheber Alireza Niroumand.</td><td>Eigenkreation</td></tr>
+                    <tr><td>Schriften</td><td>Freie Nutzung via Google Fonts (OFL Lizenz).</td><td>Google Fonts</td></tr>
+                    <tr><td>Audio</td><td>Gemeinfrei / CC0 Lizenz.</td><td>W3Schools Sample</td></tr>
                 </tbody>
             </table>
         </section>
 
         <section id="brand">
-            <h2>Markenidentität</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="border: 1px solid black; padding: 20px; text-align: center;">
-                    <span style="font-family: var(--font-serif); font-size: 1.5rem;">VisionFlow.</span>
-                    <p>Wortbildmarke (Klasse 9, 42)</p>
+            <h2>Marken-Architektur</h2>
+            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div>
+                    <h3>Wortmarke</h3>
+                    <p style="font-family: var(--font-serif); font-size: 2rem;">VisionFlow.</p>
                 </div>
-                <div style="border: 1px solid black; padding: 20px; text-align: center;">
-                    <div style="width: 40px; height: 40px; background: var(--accent); margin: auto;"></div>
-                    <p>Farbmarke (#8B4513)</p>
+                <div>
+                    <h3>Farbmarke</h3>
+                    <div style="width: 100px; height: 50px; background: var(--accent); border: 1px solid #000;"></div>
+                    <p>Deep Earth (#8B4513)</p>
                 </div>
-                <div style="border: 1px solid black; padding: 20px; text-align: center;">
-                    <div style="font-size: 2rem;">●</div>
-                    <p>Bildmarke (The Dot)</p>
+                <div>
+                    <h3>Nizza-Klassen</h3>
+                    <p>Klasse 9: Software<br>Klasse 42: SaaS / Cloud</p>
                 </div>
             </div>
+            <p><small>Markenrecherche am 05.01.2026 via EUIPO eSearch ohne Treffer ähnlicher Marken abgeschlossen.</small></p>
         </section>
 
         <section id="shop">
-            <h2>Erwerb der Software</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div style="border: 2px solid var(--accent); padding: 30px;">
-                    <h3>Monthly Subscription</h3>
-                    <p>25€ / Monat</p>
+            <h2>Lizenzerwerb</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Pro Abo</h3>
+                    <p>Monatliche Flexibilität</p>
+                    <div class="price">25€</div>
                     <button class="buy-btn">Abonnieren</button>
                 </div>
-                <div style="border: 2px solid var(--text); padding: 30px; background: var(--text); color: white;">
-                    <h3>Lifetime License</h3>
-                    <p>799€ / Einmalig</p>
-                    <button class="buy-btn" style="background: white; color: var(--text);">Jetzt kaufen</button>
+                <div class="price-card lifetime">
+                    <h3>Lifetime Legacy</h3>
+                    <p>Einmalzahlung. Für immer Ihrs.</p>
+                    <div class="price">799€</div>
+                    <button class="buy-btn" style="background: white; color: black;">Jetzt kaufen</button>
                 </div>
             </div>
-            <p><small>Haftungsbeschränkung: Die Haftung für Sach- und Vermögensschäden ist auf Vorsatz und grobe Fahrlässigkeit beschränkt. Die Gesamthaftung ist auf die Höhe des Kaufpreises gedeckelt.</small></p>
+            <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+                <h3>Nutzungsbedingungen (EULA)</h3>
+                <p>Käufer erhalten ein zeitlich unbegrenztes (Lifetime) bzw. laufzeitgebundenes (Abo) Recht zur Nutzung. <strong>Haftung:</strong> Alireza Niroumand Solutions haftet nicht für indirekte Schäden oder Datenverlust. Die Haftung ist auf den Kaufpreis gedeckelt.</p>
+            </div>
         </section>
 
         <section id="privacy">
-            <h2>Datenschutz</h2>
-            <p>Wir verwenden ausschließlich technisch notwendige Cookies. Sie haben gemäß DSGVO das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten (Art. 15-17 DSGVO).</p>
+            <h2>Datenschutz (DSGVO)</h2>
+            <p>Verantwortlich: <strong>Alireza Niroumand</strong>. Wir speichern Daten nur zur Vertragserfüllung. Sie haben das Recht auf Auskunft, Berichtigung und Löschung (Art. 15-17 DSGVO). Diese Seite nutzt nur essentielle Session-Cookies.</p>
         </section>
 
         <section id="accessibility">
-            <h2>Barrierefreiheitserklärung</h2>
-            <p>Konformität: WCAG 2.2 AA. Diese Seite wurde mit dem WAVE-Tool geprüft. Alle Bilder verfügen über Alt-Texte, die Kontraste entsprechen den gesetzlichen Anforderungen.</p>
+            <h2>Barrierefreiheit</h2>
+            <p>Die Website ist <strong>WCAG 2.2 AA konform</strong>. Wir nutzen semantisches HTML, Skip-Links und kontrastreiche Farben (#8B4513 auf #FAF9F6). Barrieren melden an: accessibility@visionflow.at</p>
         </section>
     </main>
 
     <footer>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
-            <div>
-                <h4>Impressum</h4>
-                <p>VisionFlow Solutions GmbH<br>Mariahilfer Straße 100, 1070 Wien<br>FN 123456x | UID: ATU12345678</p>
-            </div>
+        <div class="footer-grid">
             <div>
                 <h4>Kontakt</h4>
-                <p>office@visionflow-vienna.at<br>+43 1 999 888</p>
+                <p>VisionFlow Solutions GmbH<br>Mariahilfer Straße 100<br>1070 Wien, Österreich</p>
+                <p>E-Mail: alireza.niroumand@visionflow.at</p>
+            </div>
+            <div>
+                <h4>Impressum (§ 24 MedG)</h4>
+                <p><strong>Geschäftsführer:</strong> Alireza Niroumand<br>
+                   <strong>Firmenbuch:</strong> FN 123456x | HG Wien<br>
+                   <strong>UID:</strong> ATU12345678<br>
+                   <strong>Blattlinie:</strong> Vertrieb von Projektmanagement-Software.</p>
             </div>
         </div>
     </footer>
